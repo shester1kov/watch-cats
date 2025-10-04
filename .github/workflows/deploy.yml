@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main # или ветка, на которой будешь деплоить
+      - main
   workflow_dispatch:
 
 permissions:
@@ -24,9 +24,11 @@ jobs:
           node-version: "lts/*"
 
       - name: Install dependencies
+        working-directory: ./my-cinema
         run: npm ci
 
       - name: Build
+        working-directory: ./my-cinema
         run: npm run build
 
       - name: Setup Pages
@@ -35,8 +37,18 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: ./dist
+          path: my-cinema/dist
 
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
         id: deployment
+        uses: actions/deploy-pages@v4
