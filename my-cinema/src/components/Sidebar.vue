@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Home, Star, Video, Settings, User } from 'lucide-vue-next'
+import { Home, Star, Video, Settings } from 'lucide-vue-next'
 import { useRoute, RouterLink } from 'vue-router'
 const route = useRoute()
 </script>
