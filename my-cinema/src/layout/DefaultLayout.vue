@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-[--color-bg] text-zinc-200 flex bg-zinc-950">
+  <div class="min-h-screen text-zinc-200 flex bg-zinc-950">
     <Sidebar />
     <div class="flex-1 min-w-0">
       <Topbar />
